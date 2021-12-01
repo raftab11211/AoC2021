@@ -14,5 +14,5 @@ public class Day_26 : BaseDay
 
     public override ValueTask<string> Solve_1() => new(_input.Length.ToString());
 
-    public override ValueTask<string> Solve_2() => throw new NotImplementedException();
+    public override ValueTask<string> Solve_2() => new(_input.Length.ToString());
 }
