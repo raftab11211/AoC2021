@@ -8,7 +8,7 @@ public class Day_05 : BaseDay
 {
     private readonly string _input;
     private readonly List<string> _rawCoords;
-    private readonly List<Line> _lines = new List<Line>();
+    private readonly List<Line_Day_05> _lines = new List<Line_Day_05>();
 
     public Day_05()
     {
@@ -21,12 +21,12 @@ public class Day_05 : BaseDay
             string firstY = bothCoords[0].Split(",")[1];
             string secondX = bothCoords[1].Split(",")[0];
             string secondY = bothCoords[1].Split(",")[1];
-            Line line = new Line();
+            Line_Day_05 lineDay05 = new Line_Day_05();
             Coordinate firstCoord = new Coordinate(int.Parse(firstX), int.Parse(firstY));
             Coordinate secondCoord = new Coordinate(int.Parse(secondX), int.Parse(secondY));
-            line.FirstCoordinate = firstCoord;
-            line.SecondCoordinate = secondCoord;
-            _lines.Add(line);
+            lineDay05.FirstCoordinate = firstCoord;
+            lineDay05.SecondCoordinate = secondCoord;
+            _lines.Add(lineDay05);
         }
     }
 
@@ -35,7 +35,7 @@ public class Day_05 : BaseDay
         var noDiagonalLines = _lines.Where(x => !x.IsDiagonal()).ToList();
 
         List<Coordinate> allCoords = new List<Coordinate>();
-        foreach (Line line in noDiagonalLines)
+        foreach (Line_Day_05 line in noDiagonalLines)
         {
             allCoords.AddRange(line.FullRangeNoDiag());
         }
@@ -51,11 +51,11 @@ public class Day_05 : BaseDay
     private int Solve2()
     {
         List<Coordinate> allLines = new List<Coordinate>();
-        foreach (Line line in _lines)
+        foreach (Line_Day_05 line in _lines)
         {
             allLines.AddRange(line.FullRangeNoDiag());
         }
-        foreach (Line line in _lines)
+        foreach (Line_Day_05 line in _lines)
         {
             allLines.AddRange(line.FullRangeDiag());
         }
@@ -72,7 +72,7 @@ public class Day_05 : BaseDay
 
     public override ValueTask<string> Solve_2() => new(Solve2().ToString());
 
-    public class Line
+    public class Line_Day_05
     {
         public Coordinate FirstCoordinate { get; set; }
         public Coordinate SecondCoordinate { get; set; }

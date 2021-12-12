@@ -26,21 +26,21 @@ public class Day_04 : BaseDay
         for (int i = 0; i < _boardInput.Count; i+=6)
         {
             Board b = new Board();
-            Line col1 = new Line();
+            Line_Day_04 col1 = new Line_Day_04();
             col1.IsHorizontal = false;
-            Line col2 = new Line();
+            Line_Day_04 col2 = new Line_Day_04();
             col2.IsHorizontal = false;
-            Line col3 = new Line();
+            Line_Day_04 col3 = new Line_Day_04();
             col3.IsHorizontal = false;
-            Line col4 = new Line();
+            Line_Day_04 col4 = new Line_Day_04();
             col4.IsHorizontal = false;
-            Line col5 = new Line();
+            Line_Day_04 col5 = new Line_Day_04();
             col5.IsHorizontal = false;
             
             //For every row
             for (int t = 0; t < 5; t++)
             {
-                Line l = new Line();
+                Line_Day_04 l = new Line_Day_04();
                 l.IsHorizontal = true;
                 string[] row = _boardInput[i + t].Split(" ", StringSplitOptions.RemoveEmptyEntries);
                 
@@ -133,9 +133,9 @@ public class Day_04 : BaseDay
 
 public class Board
 {
-    private List<Line> _lines = new();
+    private List<Line_Day_04> _lines = new();
     
-    public List<Line> Lines
+    public List<Line_Day_04> Lines
     {
         get { return _lines; }
         set { _lines = value; }
@@ -144,7 +144,7 @@ public class Board
     public int CalculcateAllUnchecked()
     {
         int uncheckedCalc = 0;
-        foreach(Line line in _lines)
+        foreach(Line_Day_04 line in _lines)
         {
             foreach (Number number in line.Numbers)
             {
@@ -153,7 +153,7 @@ public class Board
                     uncheckedCalc += number.NumberValue;
 
                     //Where items exist in the same line at the same row and column index, 0 them out, this stops us from counting them twice
-                    foreach (Line lineConflict in _lines)
+                    foreach (Line_Day_04 lineConflict in _lines)
                     {
                         foreach (Number numberConflict in lineConflict.Numbers)
                         {
@@ -172,7 +172,7 @@ public class Board
 
     public void CheckNumber(int number)
     {
-        foreach (Line line in Lines)
+        foreach (Line_Day_04 line in Lines)
         {
             foreach (Number numberCheck in line.Numbers)
             {
@@ -186,7 +186,7 @@ public class Board
 
     public bool AnyBingo()
     {
-        foreach (Line line in Lines)
+        foreach (Line_Day_04 line in Lines)
         {
             if (line.IsAllChecked())
             {
@@ -197,7 +197,7 @@ public class Board
     }
 }
 
-public class Line
+public class Line_Day_04
 {
     private List<Number> _numbers = new();
     public bool IsHorizontal { get; set; } 
